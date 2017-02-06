@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 /**
  * Created by fred on 05/02/2017.
+ *
+ * This activity controls the editing layout and the input/output parsing
  */
 
 public class EditActivity extends Activity {
@@ -43,6 +45,8 @@ public class EditActivity extends Activity {
         inseamText = (EditText) findViewById(R.id.editInseam);
         commentsText = (EditText) findViewById(R.id.editComments);
 
+        //the Intent extras will be the existing values when editing.
+        //for new Records: (extras == null)
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Record existingRecord = (Record) extras.getSerializable("existingRecord");

@@ -20,8 +20,10 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
- * @author Sanath Nandasiri
+ * @originalauthor Sanath Nandasiri
+ * @author Fred Drury
  * this is expandable list adapter
+ * this class handles most of the UI.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private static final String FILENAME = "file.sav";

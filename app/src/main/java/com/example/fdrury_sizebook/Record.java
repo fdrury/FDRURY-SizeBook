@@ -18,12 +18,12 @@ public class Record implements Serializable {
     private Size hipSize = new Size("hip", "circumference in inches");
     private Size inseamSize = new Size("inseam", "circumference in inches");
 
-
+    //name is the only mandatory field.
     public Record(String name){
         this.name = name;
     }
 
-
+    //In this program, these variables are always manipulated all at the same time.
     public void setValues(String name, String date, float neckSize, float bustSize, float chestSize, float waistSize, float hipSize, float inseamSize, String comment){
         this.name = name;
         this.neckSize.setValue(neckSize);
@@ -36,6 +36,7 @@ public class Record implements Serializable {
         this.validDate = date;
     }
 
+    //Returns readable descriptions for the contents of the Record
     public ArrayList<String> getValues(){
         ArrayList<String> values = new ArrayList<String>();
         values.add(name);
@@ -51,6 +52,7 @@ public class Record implements Serializable {
         return values;
     }
 
+    //Returns raw String values for the contents of the Record
     public ArrayList<String> getRawValues(){
         ArrayList<String> values = new ArrayList<String>();
         values.add(name);
@@ -66,6 +68,7 @@ public class Record implements Serializable {
         return values;
     }
 
+    //The Record name is used for indexing in the UI so a getter is required
     public String getRecordName(){
         return name;
     }

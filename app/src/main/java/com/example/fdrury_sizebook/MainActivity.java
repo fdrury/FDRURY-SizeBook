@@ -66,15 +66,6 @@ public class MainActivity extends Activity {
         recordCounter.setText("# of records: " + records.size());
     }
 
-    /** Called when the activity starts. */
-    /*@Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-
-        loadFromFile();
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
