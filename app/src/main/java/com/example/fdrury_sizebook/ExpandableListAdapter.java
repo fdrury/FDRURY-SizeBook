@@ -94,7 +94,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 public void onClick(View v) {
                     removeGroup(groupPosition);
                     notifyDataSetChanged();
-                    saveInFile();
 
                 }
             });
@@ -102,10 +101,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             Button editButton = (Button) convertView.findViewById(R.id.editButton);
             editButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    //Intent intent = new Intent(MainActivity.this, EditActivity.class);
-                    //startActivityForResult(intent, 1);
                     if(context instanceof MainActivity){
                         Intent intent = new Intent(context, EditActivity.class);
+                        intent.putExtra("existingRecord",records.get(groupPosition));
+                        records.remove(groupPosition);
                         ((MainActivity)context).startActivityForResult(intent, 1);
                     }
                     notifyDataSetChanged();
@@ -131,6 +130,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if(context instanceof MainActivity){
             ((MainActivity)context).updateCounter();
         }
+        saveInFile();
     }
 
     /**

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 /**
  * Created by fred on 05/02/2017.
  */
@@ -40,6 +42,22 @@ public class EditActivity extends Activity {
         hipText = (EditText) findViewById(R.id.editHip);
         inseamText = (EditText) findViewById(R.id.editInseam);
         commentsText = (EditText) findViewById(R.id.editComments);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Record existingRecord = (Record) extras.getSerializable("existingRecord");
+            ArrayList<String> values = existingRecord.getRawValues();
+            nameText.setText(values.get(0));
+            neckText.setText(values.get(2));
+            bustText.setText(values.get(3));
+            chestText.setText(values.get(4));
+            waistText.setText(values.get(5));
+            hipText.setText(values.get(6));
+            inseamText.setText(values.get(7));
+            commentsText.setText(values.get(8));
+
+            cancelButton.setText("Delete");
+        }
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
 

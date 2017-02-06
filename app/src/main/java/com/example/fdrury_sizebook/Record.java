@@ -38,6 +38,7 @@ public class Record implements Serializable {
 
     public ArrayList<String> getValues(){
         ArrayList<String> values = new ArrayList<String>();
+        values.add(name);
         values.add(validDate.toString());
         values.add(neckSize.toString());
         values.add(bustSize.toString());
@@ -45,6 +46,21 @@ public class Record implements Serializable {
         values.add(waistSize.toString());
         values.add(hipSize.toString());
         values.add(inseamSize.toString());
+        values.add(comment);
+
+        return values;
+    }
+
+    public ArrayList<String> getRawValues(){
+        ArrayList<String> values = new ArrayList<String>();
+        values.add(name);
+        values.add(validDate.toString());
+        values.add(neckSize.getValue()+"");
+        values.add(bustSize.getValue()+"");
+        values.add(chestSize.getValue()+"");
+        values.add(waistSize.getValue()+"");
+        values.add(hipSize.getValue()+"");
+        values.add(inseamSize.getValue()+"");
         values.add(comment);
 
         return values;
