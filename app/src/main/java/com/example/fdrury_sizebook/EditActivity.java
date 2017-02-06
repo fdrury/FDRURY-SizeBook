@@ -53,22 +53,22 @@ public class EditActivity extends Activity {
             ArrayList<String> values = existingRecord.getRawValues();
             nameText.setText(values.get(0));
             if(Float.valueOf(values.get(2)) > 0) {
-                neckText.setText(values.get(2));
+                neckText.setText(String.format("%.1f", Float.valueOf(values.get(2))));
             }
             if(Float.valueOf(values.get(3)) > 0) {
-                bustText.setText(values.get(3));
+                bustText.setText(String.format("%.1f", Float.valueOf(values.get(3))));
             }
             if(Float.valueOf(values.get(4)) > 0) {
-                chestText.setText(values.get(4));
+                chestText.setText(String.format("%.1f", Float.valueOf(values.get(4))));
             }
             if(Float.valueOf(values.get(5)) > 0) {
-                waistText.setText(values.get(5));
+                waistText.setText(String.format("%.1f", Float.valueOf(values.get(5))));
             }
             if(Float.valueOf(values.get(6)) > 0) {
-                hipText.setText(values.get(6));
+                hipText.setText(String.format("%.1f", Float.valueOf(values.get(6))));
             }
             if(Float.valueOf(values.get(7)) > 0) {
-                inseamText.setText(values.get(7));
+                inseamText.setText(String.format("%.1f", Float.valueOf(values.get(7))));
             }
             commentsText.setText(values.get(8));
 
@@ -90,10 +90,11 @@ public class EditActivity extends Activity {
                 Intent intent = new Intent();
                 Record newRecord = new Record(nameText.getText().toString());
                 //the '"0" + ' protects against empty fields
+                //there is probably a better way to parse this text
                 newRecord.setValues(nameText.getText().toString(), dateText.getYear() + "-" + dateText.getMonth() + "-" + dateText.getDayOfMonth(),
-                        Float.valueOf("0" + neckText.getText().toString()), Float.valueOf("0" + bustText.getText().toString()),
-                        Float.valueOf("0" + chestText.getText().toString()), Float.valueOf("0" + waistText.getText().toString()),
-                        Float.valueOf("0" + hipText.getText().toString()), Float.valueOf("0" + inseamText.getText().toString()),
+                        Float.valueOf(String.format("%.1f", Float.valueOf("0" + neckText.getText().toString()))), Float.valueOf(String.format("%.1f", Float.valueOf("0" + bustText.getText().toString()))),
+                        Float.valueOf(String.format("%.1f", Float.valueOf("0" + chestText.getText().toString()))), Float.valueOf(String.format("%.1f", Float.valueOf("0" + waistText.getText().toString()))),
+                        Float.valueOf(String.format("%.1f", Float.valueOf("0" + hipText.getText().toString()))), Float.valueOf(String.format("%.1f", Float.valueOf("0" + inseamText.getText().toString()))),
                         commentsText.getText().toString());
                 intent.putExtra("newRecord",newRecord);
 
