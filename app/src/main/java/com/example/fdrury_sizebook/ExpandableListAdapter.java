@@ -2,6 +2,7 @@
 package com.example.fdrury_sizebook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,13 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +26,7 @@ import java.util.ArrayList;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private static final String FILENAME = "file.sav";
 	LayoutInflater inflater;
+    Context context;
 	
 	/*list of group */
 	private ArrayList<Record> records;
@@ -25,6 +34,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	super();
 		this.records = records;
 		inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.context = context;
 	}
 
     public String getChild(int groupPosition, int childPosition) {
@@ -77,12 +87,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	if(convertView==null) {
     	    //convertView=inflater.inflate(R.layout.group_view, null);
             convertView=inflater.inflate(R.layout.group_view, null);
+            final View myView = convertView;
 
             Button deleteButton = (Button) convertView.findViewById(R.id.deleteButton);
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     removeGroup(groupPosition);
                     notifyDataSetChanged();
+                    saveInFile();
+
                 }
             });
 
@@ -90,8 +103,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             editButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     //Intent intent = new Intent(MainActivity.this, EditActivity.class);
-                    //v.getContext().startActivityForResult(intent, 1);
-                    //notifyDataSetChanged();
+                    //startActivityForResult(intent, 1);
+                    if(context instanceof MainActivity){
+                        Intent intent = new Intent(context, EditActivity.class);
+                        ((MainActivity)context).startActivityForResult(intent, 1);
+                    }
+                    notifyDataSetChanged();
                 }
             });
     	}
@@ -106,5 +123,37 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     public boolean hasStableIds() {
         return true;
+    }
+
+    @Override
+    public void notifyDataSetChanged(){
+        super.notifyDataSetChanged();
+        if(context instanceof MainActivity){
+            ((MainActivity)context).updateCounter();
+        }
+    }
+
+    /**
+     * Saves records to a specified file in JSON format.
+     * @throws FileNotFoundException if file folder doesn't exist
+     */
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = context.openFileOutput(FILENAME,
+                    Context.MODE_PRIVATE); //MODE_PRIVATE is also '0'
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(records, out);
+            out.flush();
+
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Handle the Exception properly later
+            throw new RuntimeException(); //crashes app
+        } catch (IOException e) {
+            // TODO Handle the Exception properly later
+            throw new RuntimeException(); //crashes app
+        }
     }
 }

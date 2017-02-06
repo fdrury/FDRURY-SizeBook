@@ -51,8 +51,7 @@ public class MainActivity extends Activity {
         /*set adapter to list view*/
         expandableListView.setAdapter(expandableListAdapter);
 
-        TextView recordCounter = (TextView)findViewById(R.id.textView);
-        recordCounter.setText("# of records: " + records.size());
+        updateCounter();
 
         Button newButton = (Button) findViewById(R.id.newButton);
 
@@ -64,6 +63,11 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 1);
             }
         });
+    }
+
+    public void updateCounter(){
+        TextView recordCounter = (TextView)findViewById(R.id.textView);
+        recordCounter.setText("# of records: " + records.size());
     }
 
     /** Called when the activity starts. */
