@@ -1,10 +1,12 @@
 package com.example.fdrury_sizebook;
 
+import java.io.Serializable;
+
 /**
  * Created by fred on 04/02/2017.
  */
 
-public class Size {
+public class Size implements Serializable {
     private String bodyPart;
     private String description;
     private float value;

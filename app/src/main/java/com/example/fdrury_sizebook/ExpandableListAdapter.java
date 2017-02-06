@@ -1,8 +1,6 @@
 
 package com.example.fdrury_sizebook;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +9,23 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static android.app.Activity.RESULT_OK;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 /**
  * @author Sanath Nandasiri
  * this is expandable list adapter
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
-	
+    private static final String FILENAME = "file.sav";
 	LayoutInflater inflater;
 	
 	/*list of group */
@@ -78,12 +85,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	if(convertView==null) {
     	    //convertView=inflater.inflate(R.layout.group_view, null);
             convertView=inflater.inflate(R.layout.group_view, null);
+
             Button deleteButton = (Button) convertView.findViewById(R.id.deleteButton);
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    //setResult(RESULT_OK);
                     removeGroup(groupPosition);
                     notifyDataSetChanged();
+                }
+            });
+
+            Button editButton = (Button) convertView.findViewById(R.id.editButton);
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    //Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                    //v.getContext().startActivityForResult(intent, 1);
+                    //notifyDataSetChanged();
                 }
             });
     	}

@@ -44,7 +44,8 @@ public class EditActivity extends Activity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                setResult(RESULT_OK);
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
                 finish();
             }
         });
@@ -52,9 +53,16 @@ public class EditActivity extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                setResult(RESULT_OK);
+                Intent intent = new Intent();
+                Record newRecord = new Record(nameText.getText().toString());
+                newRecord.setValues(nameText.getText().toString(), dateText.getYear() + "-" + dateText.getMonth() + "-" + dateText.getDayOfMonth(),
+                        Float.valueOf(neckText.getText().toString()), Float.valueOf(bustText.getText().toString()),
+                        Float.valueOf(chestText.getText().toString()), Float.valueOf(waistText.getText().toString()),
+                        Float.valueOf(hipText.getText().toString()), Float.valueOf(inseamText.getText().toString()),
+                        commentsText.getText().toString());
+                intent.putExtra("newRecord",newRecord);
 
-
+                setResult(RESULT_OK, intent);
 
                 finish();
             }

@@ -1,16 +1,16 @@
 package com.example.fdrury_sizebook;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by fred on 04/02/2017.
  */
 
-public class Record {
+public class Record implements Serializable {
     private String name;
     private String comment;
-    private Date validDate;
+    private String validDate;
     private Size neckSize = new Size("neck", "circumference in inches");
     private Size bustSize = new Size("bust", "circumference in inches");
     private Size chestSize = new Size("chest", "circumference in inches");
@@ -21,29 +21,17 @@ public class Record {
 
     public Record(String name){
         this.name = name;
-        this.validDate = new Date(); //current date
     }
 
 
-    public void setValues(Size neckSize, Size bustSize, Size chestSize, Size waistSize, Size hipSize, Size inseamSize, String comment){
-        this.neckSize = neckSize;
-        this.bustSize = bustSize;
-        this.chestSize = chestSize;
-        this.waistSize = waistSize;
-        this.hipSize = hipSize;
-        this.inseamSize = inseamSize;
-        this.comment = comment;
-        this.validDate = new Date(); //current date
-    }
-
-    public void setValues(String name, Size neckSize, Size bustSize, Size chestSize, Size waistSize, Size hipSize, Size inseamSize, String comment, Date date){
+    public void setValues(String name, String date, float neckSize, float bustSize, float chestSize, float waistSize, float hipSize, float inseamSize, String comment){
         this.name = name;
-        this.neckSize = neckSize;
-        this.bustSize = bustSize;
-        this.chestSize = chestSize;
-        this.waistSize = waistSize;
-        this.hipSize = hipSize;
-        this.inseamSize = inseamSize;
+        this.neckSize.setValue(neckSize);
+        this.bustSize.setValue(bustSize);
+        this.chestSize.setValue(chestSize);
+        this.waistSize.setValue(waistSize);
+        this.hipSize.setValue(hipSize);
+        this.inseamSize.setValue(inseamSize);
         this.comment = comment;
         this.validDate = date;
     }
