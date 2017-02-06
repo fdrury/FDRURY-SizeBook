@@ -37,7 +37,7 @@ public class Size implements Serializable {
 
     @Override
     public String toString(){
-        if(value == -1){
+        if(value <= 0){
             return bodyPart + ": - " + this.getDescription();
         }
         return bodyPart + ": " + value + " " + this.getDescription();

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -50,6 +51,9 @@ public class MainActivity extends Activity {
         /*set adapter to list view*/
         expandableListView.setAdapter(expandableListAdapter);
 
+        TextView recordCounter = (TextView)findViewById(R.id.textView);
+        recordCounter.setText("# of records: " + records.size());
+
         Button newButton = (Button) findViewById(R.id.newButton);
 
         newButton.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +65,15 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    /** Called when the activity starts. */
+    /*@Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+
+        loadFromFile();
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

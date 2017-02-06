@@ -87,7 +87,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             });
 
             Button editButton = (Button) convertView.findViewById(R.id.editButton);
-            deleteButton.setOnClickListener(new View.OnClickListener() {
+            editButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     //Intent intent = new Intent(MainActivity.this, EditActivity.class);
                     //v.getContext().startActivityForResult(intent, 1);

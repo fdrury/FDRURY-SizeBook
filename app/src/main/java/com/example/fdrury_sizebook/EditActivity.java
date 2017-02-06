@@ -55,10 +55,11 @@ public class EditActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 Record newRecord = new Record(nameText.getText().toString());
+                //the '"0" + ' protects against empty fields
                 newRecord.setValues(nameText.getText().toString(), dateText.getYear() + "-" + dateText.getMonth() + "-" + dateText.getDayOfMonth(),
-                        Float.valueOf(neckText.getText().toString()), Float.valueOf(bustText.getText().toString()),
-                        Float.valueOf(chestText.getText().toString()), Float.valueOf(waistText.getText().toString()),
-                        Float.valueOf(hipText.getText().toString()), Float.valueOf(inseamText.getText().toString()),
+                        Float.valueOf("0" + neckText.getText().toString()), Float.valueOf("0" + bustText.getText().toString()),
+                        Float.valueOf("0" + chestText.getText().toString()), Float.valueOf("0" + waistText.getText().toString()),
+                        Float.valueOf("0" + hipText.getText().toString()), Float.valueOf("0" + inseamText.getText().toString()),
                         commentsText.getText().toString());
                 intent.putExtra("newRecord",newRecord);
 
