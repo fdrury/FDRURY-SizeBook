@@ -20,6 +20,9 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+/**
+ * MainActivity controls the main layout page of the app
+ */
 public class MainActivity extends Activity {
     private static final String FILENAME = "file.sav";
 

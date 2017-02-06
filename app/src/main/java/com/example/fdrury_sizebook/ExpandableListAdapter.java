@@ -24,6 +24,7 @@ import java.util.ArrayList;
  * @author Fred Drury
  * this is expandable list adapter
  * this class handles most of the UI.
+ * a "group" is a Record and a "child" is a field of a Record
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private static final String FILENAME = "file.sav";
@@ -56,8 +57,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
             View convertView, ViewGroup parent) {
-    	String child= (String) getChild(groupPosition,childPosition);
-    	TextView childName=null;
+    	String child= getChild(groupPosition,childPosition);
+    	TextView childName;
     	if(convertView==null) {
       	  convertView=inflater.inflate(R.layout.child_view, null);
       	   
@@ -84,11 +85,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView,
                              ViewGroup parent) {
-        TextView groupName = null;
-    	Record group=(Record) getGroup(groupPosition);
+        TextView groupName;
+    	Record group= getGroup(groupPosition);
     	if(convertView==null) {
-    	    //convertView=inflater.inflate(R.layout.group_view, null);
-            convertView=inflater.inflate(R.layout.group_view, null);
+    	    convertView=inflater.inflate(R.layout.group_view, null);
             final View myView = convertView;
 
             Button deleteButton = (Button) convertView.findViewById(R.id.deleteButton);
