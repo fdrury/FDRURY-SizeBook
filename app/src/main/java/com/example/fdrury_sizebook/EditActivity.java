@@ -48,12 +48,24 @@ public class EditActivity extends Activity {
             Record existingRecord = (Record) extras.getSerializable("existingRecord");
             ArrayList<String> values = existingRecord.getRawValues();
             nameText.setText(values.get(0));
-            neckText.setText(values.get(2));
-            bustText.setText(values.get(3));
-            chestText.setText(values.get(4));
-            waistText.setText(values.get(5));
-            hipText.setText(values.get(6));
-            inseamText.setText(values.get(7));
+            if(Float.valueOf(values.get(2)) > 0) {
+                neckText.setText(values.get(2));
+            }
+            if(Float.valueOf(values.get(3)) > 0) {
+                bustText.setText(values.get(3));
+            }
+            if(Float.valueOf(values.get(4)) > 0) {
+                chestText.setText(values.get(4));
+            }
+            if(Float.valueOf(values.get(5)) > 0) {
+                waistText.setText(values.get(5));
+            }
+            if(Float.valueOf(values.get(6)) > 0) {
+                hipText.setText(values.get(6));
+            }
+            if(Float.valueOf(values.get(7)) > 0) {
+                inseamText.setText(values.get(7));
+            }
             commentsText.setText(values.get(8));
 
             cancelButton.setText("Delete");
